@@ -1,6 +1,6 @@
 # DeployHooks
 
-This tiny gem allows to define tasks which will start before or after deployment app to heroku.
+This tiny gem allows to define tasks which will start before and/or after deployment app to heroku.
 
 ## Installation
 
@@ -20,7 +20,8 @@ You need to define your hooks in initializer like that:
 ```ruby
 DeployHooks.config do |config|
   config.environments = { stage: 'your-appname-at-stage', production: 'your-appname-at-production' }
-  config.after_deploy = { rake: %w[ db:migrate your_rake_task ], thor: %w[ your_thor_task ] }
+  config.before_deploy = { rake: %w[ your_rake_task ], thor: %w[ your_thor_task ] }
+  config.after_deploy = { rake: %w[ db:migrate another_your_rake_task ], thor: %w[ another_your_thor_task ] }
 end
 ```
 
