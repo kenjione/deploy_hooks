@@ -1,6 +1,6 @@
 # DeployHooks
 
-This gem allows to define tasks which will start before or after deployment app to heroku.
+This tiny gem allows to define tasks which will start before or after deployment app to heroku.
 
 ## Installation
 
@@ -25,6 +25,8 @@ end
 ```
 
 Also make sure that `[push] default = tracking` has been added to `.git/config` in `your_project_folder`
+
+After that, you can execute `rake deploy:<environment>` (for example `rake deploy:stage`) for pushing your app to heroku with before_deploy and/or after_deploy hooks.
 
 ## Notice
 
