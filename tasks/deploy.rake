@@ -1,6 +1,6 @@
 # List of environments and their heroku git remotes
 
-require File.expand_path('config/environment.rb')
+require File.expand_path('config/initializers/deploy_hooks.rb')
 
 ENVIRONMENTS = DeployHooks::Config.environments
 
