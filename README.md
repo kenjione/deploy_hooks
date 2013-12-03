@@ -15,7 +15,7 @@ And then execute:
 ## Usage
 
 At first u should have rake or thor tasks that will be used as hooks.
-You need to define your hooks in initializer like that:
+You need to define your hooks in initializer `initializers/deploy_hooks.rb` like that:
 
 ```ruby
 DeployHooks.config do |config|
