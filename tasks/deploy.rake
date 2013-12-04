@@ -43,7 +43,7 @@ namespace :deploy do
   task :update_code, :env, :branch do |t, args|
     FileUtils.cd Rails.root do
       puts "Updating #{ENVIRONMENTS[args[:env]]} with branch #{args[:branch]}"
-      # `git push` # if using "[push] default = tracking" in .git/config
+      `git push` # if using "[push] default = tracking" in .git/config
       #`git push #{ENVIRONMENTS[args[:env]]} +#{args[:branch]}:master`
     end
   end
