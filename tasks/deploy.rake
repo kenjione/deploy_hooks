@@ -17,22 +17,25 @@ namespace :deploy do
   end
 
   task :before_deploy, :env, :branch do |t, args|
-  	DeployHooks::Config.before_deploy.each do |tool, tasks|
-  		tasks.each { |task| `heroku run #{tool} #{task} --app #{ENVIRONMENTS[args[:env]]}` }
-  	end
+
+    DeployHooks::Config.before_deploy.each do |tool, tasks|
+      puts "### Running before_deploy #{tool} tasks ###"
+      tasks.each { |task| puts `heroku run #{tool} #{task} --app #{ENVIRONMENTS[args[:env]]}` }
+    end
     
     puts "Deploying #{args[:branch]} to #{args[:env]}..."
   end
 
   task :after_deploy, :env, :branch do |t, args|
     puts "Deployment Complete! Now I need time for some make up"
-  	
-  	DeployHooks::Config.after_deploy.each do |tool, tasks|
-  		tasks.each { |task| `heroku run #{tool} #{task} --app #{ENVIRONMENTS[args[:env]]}` }
-  	end
+    
+    DeployHooks::Config.after_deploy.each do |tool, tasks|
+      puts "### Running after_deploy #{tool} tasks ###"
+      tasks.each { |task| puts `heroku run #{tool} #{task} --app #{ENVIRONMENTS[args[:env]]}` }
+    end
 
     puts 'Restarting application...'
-    `heroku restart --app #{ENVIRONMENTS[args[:env]]}`
+    puts `heroku restart --app #{ENVIRONMENTS[args[:env]]}`
 
     puts 'Done! Enjoy.'
   end
@@ -40,7 +43,7 @@ namespace :deploy do
   task :update_code, :env, :branch do |t, args|
     FileUtils.cd Rails.root do
       puts "Updating #{ENVIRONMENTS[args[:env]]} with branch #{args[:branch]}"
-      `git push` # if using "[push] default = tracking" in .git/config
+      # `git push` # if using "[push] default = tracking" in .git/config
       #`git push #{ENVIRONMENTS[args[:env]]} +#{args[:branch]}:master`
     end
   end
