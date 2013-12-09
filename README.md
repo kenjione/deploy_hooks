@@ -6,7 +6,7 @@ This tiny gem allows to define tasks which will start before and/or after deploy
 
 Add this line to your application's Gemfile:
 
-    gem 'deploy_hooks', github: 'kenjione/deploy_hooks'
+    gem 'deploy_hooks'
 
 And then execute:
 
